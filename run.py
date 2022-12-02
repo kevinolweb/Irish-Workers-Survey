@@ -16,6 +16,7 @@ last_years_data = SHEET.worksheet('2021')
 
 data = last_years_data.get_all_values()
 
+
 def get_survey_data():
     """
     This function gets survey inputs from user
@@ -35,9 +36,15 @@ def get_survey_data():
 
 def validate_data(input_age):
     try:
-        int(input_age)
-    except ValueError:
-        print("Not a number!")
+        if input_age.isdigit():
+            if int(input_age) <18 or int(input_age) >65:
+                raise ValueError(f"You must be over 18 and under 65 to use this survey."
+                    )
+        else:
+            raise ValueError(f"Please enter a number only."
+                    )
+    except ValueError as e:
+        print(f"Invalid data. {e}")
         return False
     return True
 
