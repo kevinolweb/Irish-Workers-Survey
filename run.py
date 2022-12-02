@@ -30,8 +30,11 @@ def get_survey_data():
         if validate_data(input_age):
             list_data.append(input_age)
             break
-    input_salary=input("Please enter your salary press Enter E.g 21\n")
-    list_data.append(input_salary)
+    while True:
+        input_salary=input("Please enter your salary and press Enter E.g 31000\n")
+        if validate_salary(input_salary):
+            list_data.append(input_salary)
+            break
     return list_data
 
 def validate_data(input_age):
@@ -48,21 +51,40 @@ def validate_data(input_age):
         return False
     return True
 
+def validate_salary(input_salary):
+    try:
+        if input_salary.isdigit():
+            if int(input_salary) <10000 or int(input_salary) >100000:
+                raise ValueError(f"Only salaries between 10000 and less than 100000 are eligible to take this survey to keep data representative."
+                    )
+        else:
+            raise ValueError(f"Please enter a number."
+                    )
+    except ValueError as e:
+        print(f"Invalid data. {e}")
+        return False
+    return True
+
+def calculate_surplus_data(survey_row):
+    """
+    Compare sales with stock and calculate the surplus for each item type.
+    The surplus is defined as the sales figure subtracted from the stock:
+    - Positive surplus indicates waste
+    - Negative surplus indicates extra made when stock was sold out.
+    """
+    print("Calculating survey data...\n")
+    survey = SHEET.worksheet("2021").get_all_values()
+    print(survey)
+
+
+
 def summary_table():
     print(f"Thanks for taking part {input_name}.")
     input_data=input("Please enter your salary e.g 5000 \n")
     print(f"Your salary is €{input_data}")
 
-def update_survey_worksheet(new_data):
-    """
-    Update survey worksheet, add new row with the list data provided
-    """
-    print("Updating survey worksheet...\n")
-    survey_worksheet = SHEET.worksheet("2022")
-    survey_worksheet.append_row(new_data)
-    print("2022 Survey worksheet updated successfully.\n")
 
 
 new_data = get_survey_data()
 print(new_data)
-update_survey_worksheet(new_data)
+newsal=calculate_surplus_data(new_data)
