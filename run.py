@@ -20,9 +20,40 @@ def get_survey_data():
     """
     This function gets survey inputs from user
     """
-    print("Thank you for your interest in taking part in this survey.\n It is a survey of full time workers in Ireland. \n We ask that you answer all questions truthfully.")
+    list_data=[]
+    print("Hello, this is a survey of full time workers in Ireland. \n We ask that you answer all questions truthfully.")
+    input_name=input("Please enter your name press Enter E.g John\n")
+    list_data.append(input_name)
+    while True:
+        input_age=input("Please enter your age press Enter E.g 21\n")
+        if validate_data(input_age):
+            list_data.append(input_age)
+            return list_data
+            break
 
+def validate_data(input_age):
+    try:
+        int(input_age)
+    except ValueError:
+        print("Not a number!")
+        return False
+    return True
+
+def summary_table():
+    print(f"Thanks for taking part {input_name}.")
     input_data=input("Please enter your salary e.g 5000 \n")
     print(f"Your salary is €{input_data}")
 
-get_survey_data()
+def update_survey_worksheet(new_data):
+    """
+    Update survey worksheet, add new row with the list data provided
+    """
+    print("Updating survey worksheet...\n")
+    survey_worksheet = SHEET.worksheet("2022")
+    survey_worksheet.append_row(new_data)
+    print("2022 Survey worksheet updated successfully.\n")
+
+
+new_data = get_survey_data()
+print(new_data)
+update_survey_worksheet(new_data)
