@@ -28,8 +28,10 @@ def get_survey_data():
         input_age=input("Please enter your age press Enter E.g 21\n")
         if validate_data(input_age):
             list_data.append(input_age)
-            return list_data
             break
+    input_salary=input("Please enter your salary press Enter E.g 21\n")
+    list_data.append(input_salary)
+    return list_data
 
 def validate_data(input_age):
     try:
