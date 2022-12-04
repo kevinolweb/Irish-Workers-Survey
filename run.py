@@ -35,6 +35,7 @@ def get_survey_data():
         if validate_salary(input_salary):
             list_data.append(input_salary)
             break
+    summary_table(input_name,input_salary)
     return list_data
 
 def validate_data(input_age):
@@ -65,26 +66,42 @@ def validate_salary(input_salary):
         return False
     return True
 
-def calculate_surplus_data(survey_row):
+def calculate_previous_salary_data(survey_row):
     """
     Compare sales with stock and calculate the surplus for each item type.
     The surplus is defined as the sales figure subtracted from the stock:
     - Positive surplus indicates waste
     - Negative surplus indicates extra made when stock was sold out.
     """
-    print("Calculating survey data...\n")
+    print("Calculating last years survey data...\n")
     survey = SHEET.worksheet("2021").get_all_values()
-    print(survey)
+    survey_row=survey[0][0:11]
+    survey_salaries=survey[1][0:11]
+    x=zip(survey_row,survey_salaries)
+    for i,k in x:
+        print(i)
+        print("€",k)
+
+def update_survey_worksheet(new_data):
+    """
+    Update survey worksheet with new entries
+    """
+    print("Updating survey worksheet...\n")
+    survey_worksheet = SHEET.worksheet("2022")
+    survey_worksheet.append_row(new_data)
+    print("2022 Survey worksheet updated successfully.\n")
 
 
+def summary_table(name,salary):
+    print(f"Thanks for taking part {name}.")
+    print(f"Your salary is €{salary}")
 
-def summary_table():
-    print(f"Thanks for taking part {input_name}.")
-    input_data=input("Please enter your salary e.g 5000 \n")
-    print(f"Your salary is €{input_data}")
 
 
 
 new_data = get_survey_data()
 print(new_data)
-newsal=calculate_surplus_data(new_data)
+update_survey_worksheet(new_data)
+newsal=calculate_previous_salary_data(new_data)
+print(newsal)
+
