@@ -72,6 +72,8 @@ def calculate_previous_salary_data(survey_row):
     """
     print("Last years survey results by Industry (2021)\n")
     survey = SHEET.worksheet("2021").get_all_values()
+    survey_row=survey[-1][1]
+    print("It is", survey_row)
     survey_row=survey[0][0:11]
     survey_salaries=survey[1][0:11]
     survey_salaries_growth=survey[2][0:11]
@@ -96,7 +98,6 @@ def update_survey_worksheet(new_data):
 def summary_table(name,salary):
     print(f"Thanks for taking part {name}.")
     print(f"Your salary is €{salary}")
-
 
 
 def main():
