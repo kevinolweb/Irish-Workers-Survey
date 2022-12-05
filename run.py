@@ -36,6 +36,7 @@ def get_survey_data():
             list_data.append(input_salary)
             break
     summary_table(input_name,input_salary)
+    salary_comparison(input_salary)
     return list_data
 
 def validate_data(input_age):
@@ -66,14 +67,31 @@ def validate_salary(input_salary):
         return False
     return True
 
+def salary_comparison(user_inputted_salary):
+    """
+    Gets users salary and compare to average for 2021
+    """
+    salary_survey_data = SHEET.worksheet("2021").get_all_values()
+    survey_salaries=salary_survey_data[1][0:11]
+    overall_average_salary=avg_salary(survey_salaries)
+    survey_salaries_growth=salary_survey_data[2][0:11]
+    print("The overall average salary for 2021 was: €",overall_average_salary)
+    transformed_salary=int(overall_average_salary)
+    transformed_input_salary=int(user_inputted_salary)
+    compare=int(transformed_input_salary)-int(transformed_salary)
+    if compare >0:
+        print("You earn €",compare,"more than the average salary.")
+    elif compare <0:
+        print("You earn €",compare,"less than the average salary.")
+    else:
+        print("You earn €",compare,"an average salary.")
+
 def calculate_previous_salary_data(survey_row):
     """
     Gets data from last year across all sectors
     """
     print("Last years survey results by Industry (2021)\n")
     survey = SHEET.worksheet("2021").get_all_values()
-    survey_row=survey[-1][1]
-    print("It is", survey_row)
     survey_row=survey[0][0:11]
     survey_salaries=survey[1][0:11]
     survey_salaries_growth=survey[2][0:11]
@@ -81,18 +99,22 @@ def calculate_previous_salary_data(survey_row):
     for i,k,m in salary_info:
         print("---------------")
         print(i)
-        print("Avg Salary: €",k)
+        print("Avg Salary By Industry: €",k)
         print("Salary Growth/Decline YOY: ",m)
 
+def avg_salary(salary_data):
+    total=0
+    for salary in salary_data:
+        total+=int(salary)
+    average=round(total/len(salary_data))
+    return average
 
 def update_survey_worksheet(new_data):
     """
     Update survey worksheet with new entries
     """
-    print("Updating survey worksheet...\n")
     survey_worksheet = SHEET.worksheet("2022")
     survey_worksheet.append_row(new_data)
-    print("2022 Survey worksheet updated successfully.\n")
 
 
 def summary_table(name,salary):
@@ -102,9 +124,16 @@ def summary_table(name,salary):
 
 def main():
     new_data = get_survey_data()
-    print(new_data)
     update_survey_worksheet(new_data)
-    newsal=calculate_previous_salary_data(new_data)
-    print(newsal)
+    press_to_continue=input("Would you like to know the breakdown by Industry?Please enter y/n \n")
+    if press_to_continue.lower() =="y":
+        calculate_previous_salary_data(new_data)
+        print("\n***************")
+        print("I hope this information was valuable to you. Thanks again for taking part.")
+    else:
+        print("\n***************")
+        print("Ok, you have not selected yes so thanks again for taking part.")
+    #=calculate_previous_salary_data(new_data)
+    #print(newsal)
 
 main()
