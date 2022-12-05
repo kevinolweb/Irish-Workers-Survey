@@ -5,22 +5,41 @@ The application aims to collate financial information from users to help them ac
 
 The tool also is an effective way of gathering full time worker salary information. To find out how your average salary ranks, you must first enter your name, age and salary information. This data is stored in a Google spreadsheet which can then be used at a later point by the surveyor to compare salary by age.
 
-The tool is deployed here[https://irish-salary-survey.herokuapp.com/]
+The tool is deployed here [https://irish-salary-survey.herokuapp.com/]
 
-## Reminders
+## How it Works
 
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
+* A user must enter their name
+* A user must enter their age which cannot be under 18 or over 65 (pension age). 
+* A user must enter their salary which cannot be below €10000 and over €100000 to allow the data to not be swayed by outliers.
+* A user is then displayed how their salary compares with the national average salary for the previous year (2021).
+* The user is then asked if they want to see average salary figures by Industry to provide them with added context.
+* Salary information from 2021 is stored in a Google Spreadsheet which the app connects to
+* The users inputs of name, age and salary is stored in the Google Spreadsheet
 
-## Creating the Heroku app
+## Features
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+### Advanced Error Checking
+![Age error display](/assets/images/age-error-display.png)
+* The tool checks that the user cannot be under or over a certain age in order to submit their salary data. And that it is a number.
+![Salary error display](/assets/images/number-error.png)
+* The tool checks that the user inputted a number and the salary is between a certain reasonable range of €10,000 - €100,000.
 
-1. `heroku/python`
-2. `heroku/nodejs`
+### Salary Information Collection Storage
+* The tool stores data inputted by the user such as name, age and salary in a Google Worksheet for future data interrogation.
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+### Salary Comparison
+![Salary Comparison](/assets/images/comparison.png)
+* The tool takes your salary and checks it against the cumulative average salary across all industries stored in the Google Worksheet.
+* The tool tells you how much more/less you earn compared to the national average salary in the year previous.
+
+
+### Display Salary Data from Worksheet
+![Display Industry Salaries](/assets/images/data-display.png)
+* The tool displays average salaries across all industries which is stored in a Google Spreadsheet
+* The user has the option of viewing this if they want by selecting 'y' or ending the survey by selecting 'n'.
+
+
 
 If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
 
