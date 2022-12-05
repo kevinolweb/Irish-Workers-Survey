@@ -1,10 +1,11 @@
 # Irish Salary Survey 
+![Project Preview](/assets/images/cover-image-1.png)
 
 The application aims to collate financial information from users to help them access their financial situation. It takes various inputs from users in order to rank their financial situation effectively. It compares their average salary to the Irish national average salary for 2021. It also allows them to access this visually by providing an option for them to view average salaries by Industry.
 
 The tool also is an effective way of gathering full time worker salary information. To find out how your average salary ranks, you must first enter your name, age and salary information. This data is stored in a Google spreadsheet which can then be used at a later point by the surveyor to compare salary by age.
 
-The tool is deployed here["https://irish-salary-survey.herokuapp.com/"]
+The tool is deployed here[https://irish-salary-survey.herokuapp.com/]
 
 ## Reminders
 
