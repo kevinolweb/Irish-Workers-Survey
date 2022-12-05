@@ -68,19 +68,20 @@ def validate_salary(input_salary):
 
 def calculate_previous_salary_data(survey_row):
     """
-    Compare sales with stock and calculate the surplus for each item type.
-    The surplus is defined as the sales figure subtracted from the stock:
-    - Positive surplus indicates waste
-    - Negative surplus indicates extra made when stock was sold out.
+    Gets data from last year across all sectors
     """
-    print("Calculating last years survey data...\n")
+    print("Last years survey results by Industry (2021)\n")
     survey = SHEET.worksheet("2021").get_all_values()
     survey_row=survey[0][0:11]
     survey_salaries=survey[1][0:11]
-    x=zip(survey_row,survey_salaries)
-    for i,k in x:
+    survey_salaries_growth=survey[2][0:11]
+    salary_info=zip(survey_row,survey_salaries,survey_salaries_growth)
+    for i,k,m in salary_info:
+        print("---------------")
         print(i)
-        print("€",k)
+        print("Avg Salary: €",k)
+        print("Salary Growth/Decline YOY: ",m)
+
 
 def update_survey_worksheet(new_data):
     """
@@ -98,10 +99,11 @@ def summary_table(name,salary):
 
 
 
+def main():
+    new_data = get_survey_data()
+    print(new_data)
+    update_survey_worksheet(new_data)
+    newsal=calculate_previous_salary_data(new_data)
+    print(newsal)
 
-new_data = get_survey_data()
-print(new_data)
-update_survey_worksheet(new_data)
-newsal=calculate_previous_salary_data(new_data)
-print(newsal)
-
+main()
