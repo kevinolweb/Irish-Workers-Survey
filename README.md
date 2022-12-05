@@ -39,6 +39,9 @@ The tool is deployed here [https://irish-salary-survey.herokuapp.com/]
 * The tool displays average salaries across all industries which is stored in a Google Spreadsheet
 * The user has the option of viewing this if they want by selecting 'y' or ending the survey by selecting 'n'.
 
+## Technology
+* The tool was developed using Python.
+
 ## Testing
 1. I have put the code for the app through the pep8 editor and no major errors were uncovered.
 2. Minor whitespacing issues and similar were discovered and will be addressed later as they do not affect code functionality.
