@@ -1,8 +1,10 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Irish Salary Survey 
 
-Welcome kevinolweb,
+The application aims to collate financial information from users to help them access their financial situation. It takes various inputs from users in order to rank their financial situation effectively. It compares their average salary to the Irish national average salary for 2021. It also allows them to access this visually by providing an option for them to view average salaries by Industry.
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+The tool also is an effective way of gathering full time worker salary information. To find out how your average salary ranks, you must first enter your name, age and salary information. This data is stored in a Google spreadsheet which can then be used at a later point by the surveyor to compare salary by age.
+
+The tool is deployed here["https://irish-salary-survey.herokuapp.com/"]
 
 ## Reminders
 
