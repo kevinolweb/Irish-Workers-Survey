@@ -40,6 +40,9 @@ def get_survey_data():
     return list_data
 
 def validate_data(input_age):
+    """
+    This function validates inputted age ensuring it is a number and conforms to age limits.
+    """
     try:
         if input_age.isdigit():
             if int(input_age) <18 or int(input_age) >65:
@@ -54,6 +57,9 @@ def validate_data(input_age):
     return True
 
 def validate_salary(input_salary):
+    """
+    This function validates inputted salary ensuring it is a relevant salary figure and a number.
+    """
     try:
         if input_salary.isdigit():
             if int(input_salary) <10000 or int(input_salary) >100000:
@@ -88,7 +94,7 @@ def salary_comparison(user_inputted_salary):
 
 def calculate_previous_salary_data(survey_row):
     """
-    Gets data from last year across all sectors
+    Gets data from worksheet last year across all sectors
     """
     print("Last years survey results by Industry (2021)\n")
     survey = SHEET.worksheet("2021").get_all_values()
@@ -103,6 +109,9 @@ def calculate_previous_salary_data(survey_row):
         print("Salary Growth/Decline YOY: ",m)
 
 def avg_salary(salary_data):
+    """
+    This function validates gets the average salary from data stored in worksheet.
+    """
     total=0
     for salary in salary_data:
         total+=int(salary)
@@ -111,21 +120,27 @@ def avg_salary(salary_data):
 
 def update_survey_worksheet(new_data):
     """
-    Update survey worksheet with new entries
+    Updates survey worksheet with new entries
     """
     survey_worksheet = SHEET.worksheet("2022")
     survey_worksheet.append_row(new_data)
 
 
 def summary_table(name,salary):
+    """
+    This function summaries the persons name and salary for user feedback purposes.
+    """
     print(f"Thanks for taking part {name}.")
     print(f"Your salary is €{salary}")
 
 
 def main():
+    """
+    This function is the main function which runs the program.
+    """
     new_data = get_survey_data()
     update_survey_worksheet(new_data)
-    press_to_continue=input("Would you like to know the breakdown by Industry?Please enter y/n \n")
+    press_to_continue=input("Would you like to know the 2021 average salary breakdown by Industry?Please enter y/n \n")
     if press_to_continue.lower() =="y":
         calculate_previous_salary_data(new_data)
         print("\n***************")
@@ -133,7 +148,5 @@ def main():
     else:
         print("\n***************")
         print("Ok, you have not selected yes so thanks again for taking part.")
-    #=calculate_previous_salary_data(new_data)
-    #print(newsal)
 
 main()
