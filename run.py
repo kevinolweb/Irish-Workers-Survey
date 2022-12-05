@@ -39,6 +39,7 @@ def get_survey_data():
     salary_comparison(input_salary)
     return list_data
 
+
 def validate_data(input_age):
     """
     This function validates inputted age ensuring it is a number and conforms to age limits.
@@ -55,6 +56,7 @@ def validate_data(input_age):
         print(f"Invalid data. {e}")
         return False
     return True
+
 
 def validate_salary(input_salary):
     """
@@ -73,6 +75,7 @@ def validate_salary(input_salary):
         return False
     return True
 
+
 def salary_comparison(user_inputted_salary):
     """
     Gets users salary and compare to average for 2021
@@ -86,11 +89,11 @@ def salary_comparison(user_inputted_salary):
     transformed_input_salary=int(user_inputted_salary)
     compare=int(transformed_input_salary)-int(transformed_salary)
     if compare >0:
-        print("You earn €",compare,"more than the average salary.")
+        print("You earn €", compare, "more than the average salary.")
     elif compare <0:
-        print("You earn €",compare,"less than the average salary.")
+        print("You earn €", compare, "less than the average salary.")
     else:
-        print("You earn €",compare,"an average salary.")
+        print("You earn €", compare, "an average salary.")
 
 def calculate_previous_salary_data(survey_row):
     """
@@ -108,9 +111,10 @@ def calculate_previous_salary_data(survey_row):
         print("Avg Salary By Industry: €",k)
         print("Salary Growth/Decline YOY: ",m)
 
+
 def avg_salary(salary_data):
     """
-    This function validates gets the average salary from data stored in worksheet.
+    This function validates gets the average salary from worksheet.
     """
     total=0
     for salary in salary_data:
@@ -148,5 +152,6 @@ def main():
     else:
         print("\n***************")
         print("Ok, you have not selected yes so thanks again for taking part.")
+
 
 main()
