@@ -39,15 +39,14 @@ The tool is deployed here [https://irish-salary-survey.herokuapp.com/]
 * The tool displays average salaries across all industries which is stored in a Google Spreadsheet
 * The user has the option of viewing this if they want by selecting 'y' or ending the survey by selecting 'n'.
 
+## Testing
+1. I have put the code for the app through the pep8 editor and no major errors were uncovered.
+2. Minor whitespacing issues and similar were discovered and will be addressed later as they do not affect code functionality.
 
+## Deployment
+* The code was deployed through Heroku and can be viewed here[[https://irish-salary-survey.herokuapp.com/].
+* The Google Spreadsheet raw data is stored on a seperate private file.
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+## Credits 
+* The Code Institute Love Sandwiches project was used to assist my learning of getting data from a spreadsheet and making calculations.
 
-Connect your GitHub repository and deploy as normal.
-
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
-
------
-Happy coding!
